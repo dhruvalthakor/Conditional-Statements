@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //1.Fruit Billing System :
+    function calculateBill(fruit, quantity) {
+    let pricePerUnit;
+    switch (fruit.toLowerCase()) {
+        case 'apple':
+            pricePerUnit = 2; // Price per apple
+            break;
+        case 'banana':
+            pricePerUnit = 1; // Price per banana
+            break;
+        case 'orange':
+            pricePerUnit = 1.5; // Price per orange
+            break;
+        case 'grape':
+            pricePerUnit = 3; // Price per grape bunch
+            break;
+        case 'mango':
+            pricePerUnit = 2.5; // Price per mango
+            break;
+        default:
+            console.log('Fruit not available');
+            return 0;
+    }
+    let total = pricePerUnit * quantity;
+    return total;
+}
+
+
+let fruit = prompt('Enter the fruit name:');
+let quantity = parseInt(prompt('Enter the quantity:'));
+
+let bill = calculateBill(fruit, quantity);
+if (bill > 0) {
+    console.log(`The total bill for ${quantity} ${fruit}(s) is $${bill}`);
+}
+
+// 2.Electricity Billing :
+function calculateElectricityBill(units) {
+    let totalBill = 0;
+    if (units <= 50) {
+        totalBill = units * 0.50;
+    } else if (units <= 150) {
+        totalBill = 50 * 0.50 + (units - 50) * 0.75;
+    } else if (units <= 250) {
+        totalBill = 50 * 0.50 + 100 * 0.75 + (units - 150) * 1.20;
+    } else {
+        totalBill = 50 * 0.50 + 100 * 0.75 + 100 * 1.20 + (units - 250) * 1.50;
+    }
+    totalBill *= 1.20; 
+    return totalBill;
+}
+
+
+const unitsConsumed = parseFloat(prompt("Enter the units consumed:"));
+const billAmount = calculateElectricityBill(unitsConsumed);
+console.log("Total Electricity Bill: Rs.", billAmount);
+
+
+//3.Student Marksheet:
+function calculateGrade(percentage) {
+    if (percentage >= 90) {
+        return "A+";
+    } else if (percentage >= 80) {
+        return "A";
+    } else if (percentage >= 70) {
+        return "B";
+    } else if (percentage >= 60) {
+        return "C";
+    } else if (percentage >= 50) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
+
+function generateMarksheet(name, marks) {
+    const totalMarks = marks.reduce((total, mark) => total + mark, 0);
+    const percentage = (totalMarks / (marks.length * 100)) * 100;
+    const grade = calculateGrade(percentage);
+
+    console.log("Name:", name);
+    console.log("Total Marks:", totalMarks);
+    console.log("Percentage:", percentage.toFixed(2));
+    console.log("Grade:", grade);
+}
+
+// Example usage
+const name = prompt("Enter student's name:");
+const marks = [];
+for (let i = 0; i < 5; i++) {
+    marks.push(parseFloat(prompt(`Enter marks for subject ${i+1}:`)));
+}
+
+generateMarksheet(name, marks);
+
+</script>
+</html>
